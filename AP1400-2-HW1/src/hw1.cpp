@@ -1,4 +1,7 @@
-#include "hw1.h"
+// #include "hw1.h"
+#include "../include/hw1.h"
+#include <cstdlib>
+#include <stdexcept>
 
 using std::logic_error;
 
@@ -14,34 +17,38 @@ static inline void check_square(const Matrix& matrix) {
   }
 }
 
-static inline void check_positive_parameter(size_t x) {
-  if (x <= 0) {
-    throw logic_error("The parameters must be positive");
-  }
-}
-
 static inline void check_same_size(const Matrix& matrix1, const Matrix& matrix2) {
   if (matrix1.size() != matrix2.size() or matrix1[0].size() != matrix2[0].size()) {
     throw logic_error("The size of two matrices must be the same");
   }
 }
 
+static inline bool is_zero(const double val) {
+  if (std::abs(val) < 1e-12) {
+    return true;
+  }
+  return false;
+}
+
 namespace algebra {
 Matrix zeros(size_t n, size_t m) {
-  check_positive_parameter(n);
-  check_positive_parameter(m);
+  if (n <= 0 or m <= 0) {
+    throw logic_error("The parameters must be positive");
+  }
   return vector(n, vector<double>(m, 0));
 }
 
 Matrix ones(size_t n, size_t m) {
-  check_positive_parameter(n);
-  check_positive_parameter(m);
+  if (n <= 0 or m <= 0) {
+    throw logic_error("The parameters must be positive");
+  }
   return vector(n, vector<double>(m, 1));
 }
 
 Matrix random(size_t n, size_t m, double min, double max) {
-  check_positive_parameter(n);
-  check_positive_parameter(m);
+  if (n <= 0 or m <= 0) {
+    throw logic_error("The parameters must be positive");
+  }
   if (min >= max) {
     throw std::logic_error("The lower bound should be strictly smaller than upper bound");
   }
@@ -73,7 +80,7 @@ void show(const Matrix& matrix) {
 }
 
 Matrix multiply(const Matrix& matrix, double c) {
-  check_empty(matrix);
+  if (matrix.empty()) return matrix;
   int n = matrix.size(), m = matrix[0].size();
   Matrix result(n, std::vector<double>(m));
   for (int i = 0; i < n; ++i) {
@@ -118,7 +125,7 @@ Matrix sum(const Matrix& matrix1, const Matrix& matrix2) {
   if (matrix1.empty() and matrix2.empty()) return {};
   check_same_size(matrix1, matrix2);
   int n = matrix1.size(), m = matrix1[0].size();
-  Matrix result(n, std::vector<double>(m));
+  Matrix result = zeros(n, m);
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < m; ++j) {
       result[i][j] = matrix1[i][j] + matrix2[i][j];
@@ -130,7 +137,7 @@ Matrix sum(const Matrix& matrix1, const Matrix& matrix2) {
 Matrix transpose(const Matrix& matrix) {
   if (matrix.empty()) return matrix;
   int n = matrix.size(), m = matrix[0].size();
-  Matrix result(m, std::vector<double>(n));
+  Matrix result = zeros(m, n);
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < m; ++j) {
       result[j][i] = matrix[i][j];
@@ -174,7 +181,6 @@ double determinant(const Matrix &matrix) {
   }
 
   // if the size of the matrix is greater than 1
-  auto isOdd = [](int x) -> bool { return x % 2 == 1; };
   double result = 0;
   for (int j = 0; j < matrix[0].size(); ++j) {
     result = result + (j & 1 ? -1 : 1) * determinant(minor(matrix, 0, j)) * matrix[0][j];
@@ -184,7 +190,6 @@ double determinant(const Matrix &matrix) {
 
 Matrix adjoint(const Matrix& matrix, int n) {
   Matrix result = zeros(n, n);
-  auto isOdd = [](int x) { return x % 2 == 1;};
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < n; ++j) {
       result[i][j] = ((i + j) & 1 ? -1 : 1) * determinant(minor(matrix, i, j));
@@ -198,7 +203,7 @@ Matrix inverse(const Matrix& matrix) {
   if (matrix.empty()) return matrix;
   check_square(matrix);
   double det = determinant(matrix);
-  if (std::abs(det) < 1e-9) { // |A| cannot be 0
+  if (is_zero(det)) { // |A| cannot be 0
     throw logic_error("Singular matrices have no inverse");
   }
   Matrix adj = adjoint(matrix, matrix.size());
@@ -287,10 +292,10 @@ Matrix upper_triangular(const Matrix& matrix) {
   for (int i = 0; i < matrix.size(); ++i) {
     bool pivot_not_zero = true;
     // if the pivot == 0, find a non-empty pivot in the following rows
-    if (std::abs(result[i][i]) < 1e-9) {
+    if (is_zero(result[i][i])) {
       pivot_not_zero = false;
       for (int k = i + 1; k < matrix.size(); ++k) {
-        if (std::abs(result[k][i]) > 1e-9) {
+        if (!is_zero(result[k][i])) {
           pivot_not_zero = true;
           result = ero_swap(result, i, k);  // swap row-i and row-k if possible
           break;
