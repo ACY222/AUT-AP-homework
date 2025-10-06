@@ -1,8 +1,7 @@
 #ifndef CRYPTO_H
 #define CRYPTO_H
 
-#include <iostream>
-#include <string.h>
+#include <string>
 #include <openssl/aes.h>
 #include <openssl/evp.h>
 #include <openssl/rsa.h>

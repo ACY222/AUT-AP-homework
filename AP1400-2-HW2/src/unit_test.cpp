@@ -1,10 +1,11 @@
 
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
+#include <iostream>
 #include "server.h"
 #include "client.h"
+#include "crypto.h"
 
-/*
 TEST(HW1Test, TEST1) {
     Server server{};
     auto bryan{server.add_client("bryan")};
@@ -134,7 +135,7 @@ TEST(HW1Test, TEST15) {
     std::string mempool{};
     for(const auto& trx : pending_trxs)
         mempool += trx;
-        
+
     show_wallets(server);
     size_t nonce{server.mine()};
     show_wallets(server);
@@ -146,7 +147,3 @@ TEST(HW1Test, TEST15) {
     EXPECT_TRUE(clint->get_wallet()==3.5 ||clint->get_wallet()==3.5 ||clint->get_wallet()==9.75);
     EXPECT_TRUE(sarah->get_wallet()==13.25 || sarah->get_wallet()==7 || sarah->get_wallet()==7);
 }
-*/
-
-
-

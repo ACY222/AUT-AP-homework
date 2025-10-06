@@ -3,10 +3,10 @@
 
 ## Outline
 
-In this homework we are going to implement a simple program to simulate what is happening in **cryptocurrencies**. 
+In this homework we are going to implement a simple program to simulate what is happening in **cryptocurrencies**.
 In this homework we are going to implement 2 classes one of them is called `Server` and the other one is the `Client`. Unlike famous cryptocurrencies we are going to use a centralized server to keep track of our clients and transactions, the clients on the other hand can use the server to transfer money to each other and most importantly mine transactions to receive rewards.
-Remember for this homework you will need to understand the concepts of *hashing* and *digital signatures*, for this you can use the functions provided in `crypto.cpp/h`file.
-**note.** You are only allowed  to alter `server.cpp/h` ,  `client.cpp/h`, and only the debug section of `main.cpp`. 
+Remember for this homework you will need to understand the concepts of *hashing* and *digital signatures*, for this you can use the functions provided in `crypto.cpp/h` file.
+**note.** You are only allowed  to alter `server.cpp/h` ,  `client.cpp/h`, and only the debug section of `main.cpp`.
 
 
 
@@ -59,7 +59,7 @@ Only accept a pending transaction by authenticating the sender's signature and i
 	```cpp
 	std::vector<std::string> pending_trxs;
 	```
-		
+
 
 - **mine**
 As mentioned in the TA class each transaction has a pending state until it has been mined and to mine transactions you first need to put your pending transactions together:
@@ -119,8 +119,8 @@ Creates a transaction in the server according to its inputs. To create a transac
 
  - **generate_nonce**
 Returns a random number as a nonce so the server uses it for mining.
- 
- 
+
+
 # Questions
 - As mentioned above, you will need to define `std::vector<std::string> pending_trxs;` outside of the Server class in order to keep track of your pending transactions. Add the following function in main.cpp and make arrangements so that it will print the pending transactions correctly.
 
@@ -144,7 +144,7 @@ Returns a random number as a nonce so the server uses it for mining.
 		std::cout << std::string(20, '*') << std::endl;
 	}
 	```
-	
+
 # Hint
 Instructions to use functions in `crypto.cpp/h`  file.
 - To calculate the *sha256* of a string you can use the `crypto.cpp/h` function as:
@@ -166,20 +166,20 @@ Instructions to use functions in `crypto.cpp/h`  file.
 As mentioned before, do not alter other files already populated except otherwise indicated. In case you want to test your code you may use the `debug` section of the `main.cpp`.
 
 ```cpp
-if (true) // make false to run unit tests  
-{ 
-	// debug section 
-}  
-else  
-{  
-	::testing::InitGoogleTest(&argc, argv);  
-	std::cout << "RUNNING TESTS ..." << std::endl;  
-	int ret{RUN_ALL_TESTS()};  
-	if (!ret)  
-		std::cout << "<<<SUCCESS>>>" << std::endl;  
-	else  
-	  std::cout << "FAILED" << std::endl;  
-}  
+if (true) // make false to run unit tests
+{
+	// debug section
+}
+else
+{
+	::testing::InitGoogleTest(&argc, argv);
+	std::cout << "RUNNING TESTS ..." << std::endl;
+	int ret{RUN_ALL_TESTS()};
+	if (!ret)
+		std::cout << "<<<SUCCESS>>>" << std::endl;
+	else
+	  std::cout << "FAILED" << std::endl;
+}
 return 0;
 ```
 <br/>
