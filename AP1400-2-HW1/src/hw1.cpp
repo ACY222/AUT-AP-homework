@@ -1,9 +1,4 @@
-// #include "hw1.h"
-#include "../include/hw1.h"
-#include <cstdlib>
-#include <random>
-#include <stdexcept>
-#include <vector>
+#include "hw1.h"
 
 using std::logic_error;
 
