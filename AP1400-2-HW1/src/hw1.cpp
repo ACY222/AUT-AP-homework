@@ -1,7 +1,9 @@
-// #include "hw1.h"
-#include "../include/hw1.h"
-#include <cstdlib>
+#include "hw1.h"
+#include <cmath>
+#include <iostream>
 #include <stdexcept>
+#include <random>
+#include <iomanip>
 
 using std::logic_error;
 
@@ -35,14 +37,14 @@ Matrix zeros(size_t n, size_t m) {
   if (n <= 0 or m <= 0) {
     throw logic_error("The parameters must be positive");
   }
-  return vector(n, vector<double>(m, 0));
+  return std::vector(n, std::vector<double>(m, 0));
 }
 
 Matrix ones(size_t n, size_t m) {
   if (n <= 0 or m <= 0) {
     throw logic_error("The parameters must be positive");
   }
-  return vector(n, vector<double>(m, 1));
+  return std::vector(n, std::vector<double>(m, 1));
 }
 
 Matrix random(size_t n, size_t m, double min, double max) {
