@@ -1,3 +1,46 @@
+## Regular expression
+
+### Character Types
+
+- `.`: Matches any single character (except newline)
+- `\d`: Matches any **digit** (0-9)
+- `\w`: Matches any **word character**, including letter, digit and underscore
+- `\s`: Matches any **whitespace character**, including space, tab, newline
+- `\D \W \S`: The inverse of the lowercase versions
+
+### Character Sets
+
+- `[something]`: Matches **any one** of the characters inside the brackets
+- `[^something]`: Matches any character **NOT** inside the brackets
+
+### Quantifiers
+
+- `*`: Matches **zero or more** occurrences
+- `+`: Matches **one or more** occurrences
+- `?`: Matches **zero or one** occurrences
+- `{n}`: Matches **exactly n** occurrences
+- `{n,m}`: Matches **between n and m** occurences (inclusive)
+- `{n,}`: Matches **at least n** occurrences
+
+### Anchors
+
+Anchors match **position** within the text, not actual characters, which is
+familiar for me because of vim
+- `^`: Matches the **start** of a string
+- `$`: Matches the **end** of a string
+- `\b`: Matches a **word boundary**. E.g., `\bgo\b` matches the word "go", but
+not "gospel"
+
+But `^` and `$` is not supported in regex library
+
+### Grouping and Capturing
+
+Parentheses `()` are used to group elements together and to capture the text
+matched by that group for later use, called a backreference
+
+- `(pattern)`: **Groups** the patter. Quantifiers can be applied to the group
+- `\1, \2, ...`: **Backreferences** the text matched by the N-th captured group
+
 ## Regular expressions library
 
 The regular expressions library provides a class that represents regular
