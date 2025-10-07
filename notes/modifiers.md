@@ -130,7 +130,8 @@ is used to qualify the function's parameters or return value
 The `extern` keyword is all about **linkage** and **declarations**.
 - **Declaration, Not Definition**: `extern` creates a **declaration**, not a
     **definition**. It tells the compiler that a variable (or function) is **define
-    elsewhere**, typically in a different source file
+    elsewhere**, typically in a different source file (as we know, the global
+    variables should be defined in the source file, rather than the header file)
 - **External Linkage**: It enforces **external linkage**, meaning the entity's
     name can be seen and used globally across all course files of the program
 - **Default Behavior**: **Functions** and **non-`const` global variables** have
@@ -143,5 +144,5 @@ The `extern` keyword is all about **linkage** and **declarations**.
 ## `inline`
 
 The `inline` keyword is a hint to the compiler, primarily used to request that a
-function call be replaced directly with the function's body. It'm mainly about
+function call be replaced directly with the function's body. It's mainly about
 optimizing performance by reducing the overhead of a function call
