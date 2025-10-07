@@ -10,7 +10,7 @@ operating on several of the following objects:
     constitutes a match. It is an object of type `std::basic_regex`, constructed
     from a string with special grammer.
     - `Matched array`: The information about the matches may be retrieved as an
-    object  of type `std::match_results`
+    object of type `std::match_results`
     - `Replacement string`: This is a string that determines how to replace the
     matches
 
@@ -56,6 +56,8 @@ a subsequence* that matches the regex pattern
 ### Example
 
 ```cpp
+// The input_str is 'target sequence', pattern is 'pattern',
+//    result is 'matched array'
 // check if the input string is formatted as "name-name-number(double)"
 std::string pattern = "(\\w+)-(\\w+)-(\\d+\\.\\d+)";
 std::regex r(pattern);
