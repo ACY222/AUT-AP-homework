@@ -3,7 +3,6 @@
 #include "gmock/gmock.h"
 #include "bst.h"
 
-/*
 TEST(HW3Test, TEST1) {
 
     BST::Node left{10, nullptr, nullptr};
@@ -110,7 +109,7 @@ TEST(HW3Test, TEST9) {
     bst.add_node(10);
     bst.add_node(50);
     bst.add_node(53);
-    
+
     EXPECT_FALSE(bst.add_node(50));
 
     std::vector<int> values;
@@ -155,7 +154,7 @@ TEST(HW3Test, TEST12) {
     bst.add_node(53);
     bst.add_node(15);
     bst.add_node(7);
-    
+
     BST::Node** node{bst.find_node(10)};
     EXPECT_EQ((*node)->value, 10);
     EXPECT_EQ((*node)->left->value, 7);
@@ -170,7 +169,7 @@ TEST(HW3Test, TEST13) {
     bst.add_node(53);
     bst.add_node(15);
     bst.add_node(7);
-    
+
     BST::Node** node{bst.find_node(11)};
     EXPECT_EQ(node, nullptr);
 }
@@ -183,7 +182,7 @@ TEST(HW3Test, TEST14) {
     bst.add_node(53);
     bst.add_node(15);
     bst.add_node(7);
-    
+
     std::cout << "here" << std::endl;
     BST::Node** node{bst.find_parrent(15)};
     std::cout << "here2" << std::endl;
@@ -202,7 +201,7 @@ TEST(HW3Test, TEST15) {
     bst.add_node(7);
     bst.add_node(8);
     bst.add_node(9);
-    
+
     BST::Node** node{bst.find_successor(10)};
     EXPECT_EQ((*node)->value, 9);
     EXPECT_EQ((*node)->left, nullptr);
@@ -219,7 +218,7 @@ TEST(HW3Test, TEST16) {
     bst.add_node(7);
     bst.add_node(8);
     bst.add_node(9);
-    
+
     EXPECT_FALSE(bst.delete_node(11));
 }
 
@@ -233,7 +232,7 @@ TEST(HW3Test, TEST17) {
     bst.add_node(7);
     bst.add_node(8);
     bst.add_node(9);
-    
+
     EXPECT_EQ(bst.length(), 8);
     EXPECT_TRUE(bst.delete_node(53)); // leaf node
     EXPECT_EQ(bst.length(), 7);
@@ -252,7 +251,7 @@ TEST(HW3Test, TEST18) {
     bst.add_node(2);
     bst.add_node(7);
     bst.add_node(75);
-    
+
     EXPECT_EQ(bst.length(), 10);
     EXPECT_TRUE(bst.delete_node(10)); // only left child
     EXPECT_EQ(bst.length(), 9);
@@ -275,18 +274,18 @@ TEST(HW3Test, TEST19) {
     bst.add_node(2);
     bst.add_node(7);
     bst.add_node(75);
-    
+
     BST::Node* address_of_5{*bst.find_node(5)};
     BST::Node* address_of_2{*bst.find_node(2)};
 
     EXPECT_TRUE(bst.delete_node(10)); // only left child
 
-    // the remainig nodes should not be regenerated 
+    // the remainig nodes should not be regenerated
     // => address of remaning nodes before and after deletion should be the same
     // when deleting a node: just reconnect the needed parrents and childs
     EXPECT_EQ(*bst.find_node(5), address_of_5);
     EXPECT_EQ(*bst.find_node(2), address_of_2);
-    
+
 }
 
 TEST(HW3Test, TEST20) {
@@ -301,7 +300,7 @@ TEST(HW3Test, TEST20) {
     bst.add_node(2);
     bst.add_node(7);
     bst.add_node(75);
-    
+
     EXPECT_EQ(bst.length(), 10);
     EXPECT_TRUE(bst.delete_node(50)); // only right child
     EXPECT_EQ(bst.length(), 9);
@@ -325,13 +324,13 @@ TEST(HW3Test, TEST21) {
     bst.add_node(2);
     bst.add_node(7);
     bst.add_node(75);
-    
+
     BST::Node* address_of_60{*bst.find_node(60)};
     BST::Node* address_of_75{*bst.find_node(75)};
 
     EXPECT_TRUE(bst.delete_node(50)); // only left child
 
-    // the remainig nodes should not be regenerated 
+    // the remainig nodes should not be regenerated
     // => address of remaning nodes before and after deletion should be the same
     // when deleting a node: just reconnect the needed parrents and childs
     EXPECT_EQ(*bst.find_node(60), address_of_60);
@@ -352,7 +351,7 @@ TEST(HW3Test, TEST22) {
     bst.add_node(75);
     bst.add_node(20);
     bst.add_node(15);
-    
+
     EXPECT_EQ(bst.length(), 12);
     EXPECT_TRUE(bst.delete_node(10)); // both children exist
     EXPECT_EQ(bst.length(), 11);
@@ -376,7 +375,7 @@ TEST(HW3Test, TEST23) {
     bst.add_node(20);
     bst.add_node(15);
     bst.add_node(22);
-    
+
     EXPECT_EQ(bst.length(), 13);
     EXPECT_TRUE(bst.delete_node(25)); // both children exist
     EXPECT_EQ(bst.length(), 12);
@@ -400,7 +399,7 @@ TEST(HW3Test, TEST25) {
     bst.add_node(5);
     bst.add_node(10);
     bst.add_node(50);
-    
+
     BST equal{};
     bst.add_node(51);
     bst.add_node(66);
@@ -420,7 +419,7 @@ TEST(HW3Test, TEST26) {
     bst.add_node(4);
     bst.add_node(60);
     bst.add_node(8);
-    
+
     bst = bst;
     EXPECT_EQ(bst.get_root()->right->left->value, 8);
 }
@@ -430,7 +429,7 @@ TEST(HW3Test, TEST27) {
     bst.add_node(5);
     bst.add_node(10);
     bst.add_node(50);
-    
+
     int test_value{bst.get_root()->right->value};
     BST::Node* adddress_of_root{*bst.find_node(5)};
 
@@ -448,7 +447,7 @@ TEST(HW3Test, TEST28) {
     bst.add_node(5);
     bst.add_node(20);
     bst.add_node(22);
-    
+
     int test_value{bst.get_root()->left->right->value};
     BST::Node* adddress_of_root{*bst.find_node(25)};
 
@@ -488,9 +487,5 @@ TEST(HW3Test, TEST31) {
     bst2.bfs([&values2](BST::Node*& node){values2.push_back(node->value);});
 
     for(size_t i{}; i < values1.size(); i++)
-        EXPECT_EQ(values2[i], values1[i]-1);    
+        EXPECT_EQ(values2[i], values1[i]-1);
 }
-*/
-
-
-
