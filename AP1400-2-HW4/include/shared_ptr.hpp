@@ -52,15 +52,10 @@ public:
   }
 
   SharedPtr& operator=(const SharedPtr& other) {
-    // avoid being attacked by `ptr1 = ptr1`
-    if (this == &other) {
-      return *this;
-    }
-    this->decrement();  // this will point to another object, so the count--
-
-    this->_p = other._p;
-    this->count_p = other.count_p;
-    this->increment();
+    SharedPtr temp(other);
+    // if this == &other, when going out of this function, temp calls
+    // destructor, count--, so we won't be affected
+    swap(*this, temp);
     return *this;
   }
 
@@ -99,11 +94,17 @@ public:
   void reset(T* ptr) {
     if (this->_p == ptr) return;
     SharedPtr temp(ptr);
-    std::swap(*this, temp);
+    swap(*this, temp);
   }
 
   explicit operator bool() {
     return _p != nullptr;
+  }
+
+  friend void swap(SharedPtr& a, SharedPtr& b) noexcept {
+    using std::swap;
+    swap(a._p, b._p);
+    swap(a.count_p, b.count_p);
   }
 };
 
