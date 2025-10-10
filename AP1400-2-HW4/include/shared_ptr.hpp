@@ -55,6 +55,9 @@ public:
   }
 
   size_t use_count() {
+    if (!count_p) {
+      return 0;
+    }
     return *this->count_p;
   }
 
