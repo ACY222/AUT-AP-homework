@@ -91,16 +91,16 @@ public:
   }
 
   void reset() {
-    delete _p;
+    this->decrement();
+
     _p = nullptr;
-    delete count_p;
     count_p = nullptr;
   }
 
   void reset(T* ptr) {
-    delete _p;
+    this->decrement();
+
     _p = ptr;
-    delete count_p;
     count_p = new size_t(1);
   }
 
