@@ -42,7 +42,7 @@ public:
   }
   // copy constructor and copy assignment operator
   SharedPtr(const SharedPtr& other) :
-    _p(other->_p),
+    _p(other._p),
     count_p(other.count_p) {
     this->increment();
   }
