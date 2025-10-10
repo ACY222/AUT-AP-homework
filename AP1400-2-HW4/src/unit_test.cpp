@@ -4,8 +4,8 @@
 
 #include <string>
 #include <vector>
-#include "unique_ptr.h"
-#include "shared_ptr.h"
+#include "unique_ptr.hpp"
+#include "shared_ptr.hpp"
 
 TEST(HW4Test, TEST1) {
     UniquePtr<int> ptr1{new int{10}};
