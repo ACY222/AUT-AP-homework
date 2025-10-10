@@ -66,7 +66,15 @@ public:
     return *this->_p;
   }
 
+  const T operator*() const {
+    return *this->_p;
+  }
+
   T* operator->() {
+    return this->_p;
+  }
+
+  const T* operator->() const {
     return this->_p;
   }
 
@@ -82,6 +90,10 @@ public:
     _p = ptr;
     delete count_p;
     count_p = new size_t(1);
+  }
+
+  explicit operator bool() {
+    return _p != nullptr;
   }
 };
 

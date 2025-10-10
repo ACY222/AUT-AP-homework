@@ -30,16 +30,16 @@ public:
   T& operator*() {
     return *_p;
   }
-  // const T& operator*() const {
-  //   return *_p;
-  // }
+  const T& operator*() const {
+    return *_p;
+  }
   // operator->, arrow operator like normal pointers
   T* operator->() {
     return _p;
   }
-  // const T* operator->() const {
-  //   return _p;
-  // }
+  const T* operator->() const {
+    return _p;
+  }
   // reset, delete the pointer and assign `nullptr` to it
   void reset() {
     delete _p;
@@ -58,6 +58,10 @@ public:
     T* temp = _p; // now they point to the same space
     _p = nullptr;
     return temp;
+  }
+
+  explicit operator bool() {
+    return _p != nullptr;
   }
 };
 
