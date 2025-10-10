@@ -48,6 +48,9 @@ public:
   }
 
   SharedPtr& operator=(const SharedPtr& other) {
+    if (this == &other) {
+      return *this;
+    }
     this->_p = other._p;
     this->count_p = other.count_p;
     this->increment();
