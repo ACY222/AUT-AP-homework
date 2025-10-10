@@ -20,8 +20,10 @@ public:
   bool zero() {
     return *count_p == 0;
   }
+
   // constructor
   SharedPtr() : _p(nullptr), count_p(nullptr) {}
+  SharedPtr(std:: nullptr_t) : _p(nullptr), count_p(nullptr) {}
   SharedPtr(T* p) : _p(p), count_p(nullptr) {
     if (_p) {
       count_p = new size_t(1);  // initialize the count with 1
@@ -47,6 +49,7 @@ public:
     this->increment();
   }
 
+  // avoid being attacked by `ptr1 = ptr1`
   SharedPtr& operator=(const SharedPtr& other) {
     if (this == &other) {
       return *this;
