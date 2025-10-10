@@ -7,7 +7,6 @@
 #include "unique_ptr.h"
 #include "shared_ptr.h"
 
-/*
 TEST(HW4Test, TEST1) {
     UniquePtr<int> ptr1{new int{10}};
     EXPECT_EQ(*ptr1.get(), 10);
@@ -115,7 +114,7 @@ TEST(HW4Test, TEST13) {
     EXPECT_EQ(*ptr2, 10);
     EXPECT_EQ(ptr1.get(), ptr2.get());
     EXPECT_EQ(ptr1.use_count(), 2);
-    EXPECT_EQ(ptr2.use_count(), 2);    
+    EXPECT_EQ(ptr2.use_count(), 2);
 }
 
 TEST(HW4Test, TEST14) {
@@ -128,8 +127,8 @@ TEST(HW4Test, TEST14) {
     EXPECT_EQ(ptr1.get(), ptr2.get());
     EXPECT_EQ(ptr2.get(), ptr3.get());
     EXPECT_EQ(ptr1.use_count(), 3);
-    EXPECT_EQ(ptr2.use_count(), 3);    
-    EXPECT_EQ(ptr3.use_count(), 3);    
+    EXPECT_EQ(ptr2.use_count(), 3);
+    EXPECT_EQ(ptr3.use_count(), 3);
 }
 
 TEST(HW4Test, TEST15) {
@@ -138,7 +137,7 @@ TEST(HW4Test, TEST15) {
         {
             SharedPtr<std::string> ptr2{ptr1};
             EXPECT_EQ(ptr1.use_count(), 2);
-            EXPECT_EQ(ptr2.use_count(), 2);    
+            EXPECT_EQ(ptr2.use_count(), 2);
         }
         EXPECT_EQ(ptr1.use_count(), 1);
         SharedPtr<std::string> ptr3{ptr1};
@@ -203,8 +202,3 @@ TEST(HW4Test, TEST21) {
     EXPECT_EQ(ptr1.use_count(), 2);
     EXPECT_EQ(ptr2.use_count(), 2);
 }
-*/
-
-
-
-
