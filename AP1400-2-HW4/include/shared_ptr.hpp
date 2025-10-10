@@ -9,24 +9,26 @@ private:
   T* _p = nullptr;
   size_t* count_p = nullptr;
 
-public:
   // some functions that operator the count
   void increment() {
     ++(*count_p);
   }
   void decrement() {
     --(*count_p);
-    if (this->zero()) { // delete them when count is decreased to 0?
+    if (this->zero()) { // delete them when count is decreased to 0
       delete this->_p;
       delete this->count_p;
-      this->_p = nullptr;
+      this->_p = nullptr; // because count == 0, now there's no other pointers
       this->count_p = nullptr;
     }
   }
   bool zero() {
-    return *count_p == 0;
+    if (count_p)
+      return *count_p == 0;
+    return false;
   }
 
+public:
   // constructor
   SharedPtr() : _p(nullptr), count_p(nullptr) {}
   SharedPtr(std:: nullptr_t) : _p(nullptr), count_p(nullptr) {}
@@ -40,7 +42,6 @@ public:
     if (this->count_p) {
       // decrease the count, if it reaches 0, then delete automatically
       this->decrement();
-      this->_p = nullptr;
     }
   }
   // copy constructor and copy assignment operator
@@ -50,8 +51,8 @@ public:
     this->increment();
   }
 
-  // avoid being attacked by `ptr1 = ptr1`
   SharedPtr& operator=(const SharedPtr& other) {
+    // avoid being attacked by `ptr1 = ptr1`
     if (this == &other) {
       return *this;
     }
@@ -64,21 +65,18 @@ public:
   }
 
   size_t use_count() {
-    if (!count_p) {
-      return 0;
-    }
-    return *this->count_p;
+    return count_p ? *count_p : 0;
   }
 
-  T* get() {
+  T* get() const {
     return this->_p;
   }
 
-  T operator*() {
+  T& operator*() {
     return *this->_p;
   }
 
-  const T operator*() const {
+  const T& operator*() const {
     return *this->_p;
   }
 
@@ -91,6 +89,7 @@ public:
   }
 
   void reset() {
+    if (!_p) return;    // if _p == nullptr, do nothing
     this->decrement();
 
     _p = nullptr;
@@ -98,10 +97,9 @@ public:
   }
 
   void reset(T* ptr) {
-    this->decrement();
-
-    _p = ptr;
-    count_p = new size_t(1);
+    if (this->_p == ptr) return;
+    SharedPtr temp(ptr);
+    std::swap(*this, temp);
   }
 
   explicit operator bool() {
