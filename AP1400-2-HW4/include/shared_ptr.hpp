@@ -16,6 +16,12 @@ public:
   }
   void decrement() {
     --(*count_p);
+    if (this->zero()) { // delete them when count is decreased to 0?
+      delete this->_p;
+      delete this->count_p;
+      this->_p = nullptr;
+      this->count_p = nullptr;
+    }
   }
   bool zero() {
     return *count_p == 0;
@@ -32,15 +38,10 @@ public:
   // destructor
   ~SharedPtr() {
     if (this->count_p) {
+      // decrease the count, if it reaches 0, then delete automatically
       this->decrement();
-      if (this->zero()) {
-        delete _p;
-      }
+      this->_p = nullptr;
     }
-    else {
-      delete _p;
-    }
-    _p = nullptr;
   }
   // copy constructor and copy assignment operator
   SharedPtr(const SharedPtr& other) :
@@ -54,6 +55,8 @@ public:
     if (this == &other) {
       return *this;
     }
+    this->decrement();  // this will point to another object, so the count--
+
     this->_p = other._p;
     this->count_p = other.count_p;
     this->increment();
