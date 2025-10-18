@@ -30,7 +30,7 @@ public:
     std::string get_name();
 
     double price();
-    
+
 
 protected:
     Ingredient(double price_unit, size_t units);
@@ -83,7 +83,7 @@ public:
 
 ***note.*** Do all your implementation of these classes in the `sub_ingredient.h` file. (no need to separate the classes into different files)
 
-</br> 
+</br>
 
 # EspressoBased Class
 Define an **abstract** class named `EspressoBased` using the code fraction below.
@@ -140,7 +140,7 @@ In this homework you are allowed to change `Dockerfile`, `CmakeLists.txt` or add
 ***note.*** Implement this class in `espresso_based.h/.cpp` files.
 
 ***Question.*** what happens if you define the destructor i.e. `~EspressoBased()` in the protected section? explain your answer in your report.
- 
+
 
 </br>
 
@@ -213,7 +213,7 @@ Derive the `Mocha` class from the `EspressoBased` abstract class exactly like ca
 	```
 	The above code should implement all ingredient classes using you Macro. The inputs of DEFCLASS are 1. the name of the class, 2. the price per unit of the ingredient.
 
-	***please note*** although using Macros is not encouraged in modern c++, but knowing how to work with them is very important for a professional programmer like you, So learn it but try not to use it unless it is absolutely necessary. 
+	***please note*** although using Macros is not encouraged in modern c++, but knowing how to work with them is very important for a professional programmer like you, So learn it but try not to use it unless it is absolutely necessary.
 
 </br>
 
@@ -222,20 +222,20 @@ As mentioned before, do not alter other files already populated except otherwise
 
 
 ```cpp
-if (true) // make false to run unit tests  
-{ 
-	// debug section 
-}  
-else  
-{  
-	::testing::InitGoogleTest(&argc, argv);  
-	std::cout << "RUNNING TESTS ..." << std::endl;  
-	int ret{RUN_ALL_TESTS()};  
-	if (!ret)  
-		std::cout << "<<<SUCCESS>>>" << std::endl;  
-	else  
-	  std::cout << "FAILED" << std::endl;  
-}  
+if (true) // make false to run unit tests
+{
+	// debug section
+}
+else
+{
+	::testing::InitGoogleTest(&argc, argv);
+	std::cout << "RUNNING TESTS ..." << std::endl;
+	int ret{RUN_ALL_TESTS()};
+	if (!ret)
+		std::cout << "<<<SUCCESS>>>" << std::endl;
+	else
+	  std::cout << "FAILED" << std::endl;
+}
 return 0;
 ```
 <br/>
