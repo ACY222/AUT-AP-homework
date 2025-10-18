@@ -3,13 +3,13 @@
 
 #include "ingredient.h"
 
-#define DEFCLASS(ingredient_name, price_unit)  \
-  class ingredient_name : public Ingredient \
-  {           \
-  public:     \
+#define DEFCLASS(ingredient_name, price_unit)                               \
+  class ingredient_name : public Ingredient                                 \
+  {                                                                         \
+  public:                                                                   \
     ingredient_name(size_t units) : Ingredient{(price_unit), units} {       \
-      this->name = #ingredient_name;                      \
-    }         \
+      this->name = #ingredient_name;                                        \
+    }                                                                       \
     virtual std::string  get_name() const override { return this->name; }   \
     virtual ~ingredient_name() override = default; \
   };

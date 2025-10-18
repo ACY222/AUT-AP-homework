@@ -13,7 +13,13 @@ std::vector<Ingredient*>& EspressoBased::get_ingredients() {
   return ingredients;
 }
 
-EspressoBased::EspressoBased() {}
+EspressoBased::~EspressoBased() {
+  for (const auto ingredient_ptr : ingredients) {
+    delete ingredient_ptr;
+  }
+}
+
+EspressoBased::EspressoBased() = default;
 
 EspressoBased::EspressoBased(const EspressoBased& esp) {
   std::copy(esp.ingredients.begin(), esp.ingredients.end(), ingredients.begin());

@@ -6,13 +6,13 @@
 
 class EspressoBased {
 public:
-  virtual std::string get_name() = 0;
-  virtual double price() = 0;
+  virtual std::string get_name() const = 0;
+  virtual double price() const = 0;
 
   void brew();
   std::vector<Ingredient*>& get_ingredients();
 
-  virtual ~EspressoBased() = 0;
+  virtual ~EspressoBased();
 
 protected:
   EspressoBased();

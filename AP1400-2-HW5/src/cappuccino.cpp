@@ -4,17 +4,17 @@
 
 Cappuccino::Cappuccino() {
   // add its default sub_ingredients
-  ingredients.emplace_back(new Espresso(2));
-  ingredients.emplace_back(new Milk(2));
-  ingredients.emplace_back(new MilkFoam(1));
+  ingredients.push_back(new Espresso(2));
+  ingredients.push_back(new Milk(2));
+  ingredients.push_back(new MilkFoam(1));
 }
 
 Cappuccino::Cappuccino(const Cappuccino& cap)
   : EspressoBased(cap), side_items(cap.side_items) {}
 
 Cappuccino::~Cappuccino() {
-  for (const auto& i : side_items) {
-    delete i;
+  for (const auto& side : side_items) {
+    delete side;
   }
   side_items.clear();
 }
@@ -28,11 +28,11 @@ void Cappuccino::operator=(const Cappuccino& cap) {
   name = cap.name;
 }
 
-std::string Cappuccino::get_name() {
+std::string Cappuccino::get_name() const {
   return name;
 }
 
-double Cappuccino::price() {
+double Cappuccino::price() const {
   double price = 0;
   for (const auto& ingredient_ptr : ingredients) {
     price += ingredient_ptr->price();

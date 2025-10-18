@@ -9,11 +9,11 @@ class Mocha : public EspressoBased {
 public:
   Mocha();
   Mocha(const Mocha& cap);
-  ~Mocha();
+  virtual ~Mocha();
   void operator=(const Mocha& cap);
 
-  virtual std::string get_name() override;
-  virtual double price() override;
+  virtual std::string get_name() const override;
+  virtual double price() const override;
 
   void add_side_item(Ingredient* side);
   std::vector<Ingredient*>& get_side_items();

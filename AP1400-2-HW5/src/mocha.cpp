@@ -4,18 +4,18 @@
 
 Mocha::Mocha() {
   // add its default sub_ingredients
-  ingredients.emplace_back(new Espresso(2));
-  ingredients.emplace_back(new Milk(2));
-  ingredients.emplace_back(new MilkFoam(1));
-  ingredients.emplace_back(new Chocolate(1));
+  ingredients.push_back(new Espresso(2));
+  ingredients.push_back(new Milk(2));
+  ingredients.push_back(new MilkFoam(1));
+  ingredients.push_back(new Chocolate(1));
 }
 
 Mocha::Mocha(const Mocha& cap)
   : EspressoBased(cap), side_items(cap.side_items) {}
 
 Mocha::~Mocha() {
-  for (const auto& i : side_items) {
-    delete i;
+  for (const auto& side : side_items) {
+    delete side;
   }
   side_items.clear();
 }
@@ -29,11 +29,11 @@ void Mocha::operator=(const Mocha& cap) {
   name = cap.name;
 }
 
-std::string Mocha::get_name() {
+std::string Mocha::get_name() const {
   return name;
 }
 
-double Mocha::price() {
+double Mocha::price() const {
   double price = 0;
   for (const auto& ingredient_ptr : ingredients) {
     price += ingredient_ptr->price();
