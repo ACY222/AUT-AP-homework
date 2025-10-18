@@ -12,7 +12,7 @@ public:
   // make get_name() a pure virtual function and so the class an abstract class
   // the name of the ingredients, like Milk
   virtual std::string get_name() const = 0;
-  double price() { return price_unit * units; }
+  double price() const { return price_unit * units; }
   virtual ~Ingredient() = default;
 
   virtual Ingredient* clone() const = 0;
