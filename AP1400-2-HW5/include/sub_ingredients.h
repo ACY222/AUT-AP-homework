@@ -7,11 +7,11 @@
   class ingredient_name : public Ingredient \
   {           \
   public:     \
-    ingredient_name(size_t units) : Ingredient{(price_unit), units}  \
-    {         \
+    ingredient_name(size_t units) : Ingredient{(price_unit), units} {       \
       this->name = #ingredient_name;                      \
     }         \
     virtual std::string  get_name() const override { return this->name; }   \
+    virtual ~ingredient_name() override = default; \
   };
 
 DEFCLASS(Cinnamon, 5);

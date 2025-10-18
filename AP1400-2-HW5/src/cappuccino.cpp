@@ -46,3 +46,7 @@ double Cappuccino::price() {
 void Cappuccino::add_side_item(Ingredient* side) {
   side_items.push_back(side);
 }
+
+std::vector<Ingredient*>& Cappuccino::get_side_items() {
+  return side_items;
+}

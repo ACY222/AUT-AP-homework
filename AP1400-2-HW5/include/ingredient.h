@@ -20,6 +20,8 @@ public:
   double price() {
     return price_unit * units;
   }
+
+  virtual ~Ingredient() = 0;
 protected:
   // the following members are accessible for Ingredient and its subclass
   Ingredient(double price_unit, size_t units)
