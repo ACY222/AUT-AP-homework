@@ -1,19 +1,23 @@
 #include "cappuccino.h"
-#include "espresso_based.h"
 #include "sub_ingredients.h"
 
 Cappuccino::Cappuccino() {
+  name = "Cappuccino";
   // add its default sub_ingredients
   ingredients.push_back(new Espresso(2));
   ingredients.push_back(new Milk(2));
   ingredients.push_back(new MilkFoam(1));
 }
 
-Cappuccino::Cappuccino(const Cappuccino& cap)
-  : EspressoBased(cap), side_items(cap.side_items) {}
+Cappuccino::Cappuccino(const Cappuccino& cap) {
+  name = cap.name;
+  for (const auto& side : side_items) {
+    side_items.push_back(side->clone());
+  }
+}
 
 Cappuccino::~Cappuccino() {
-  for (const auto& side : side_items) {
+  for (auto& side : side_items) {
     delete side;
   }
   side_items.clear();
@@ -23,9 +27,16 @@ void Cappuccino::operator=(const Cappuccino& cap) {
   if (this == &cap) {
     return;
   }
-  ingredients = cap.ingredients;
-  side_items = cap.side_items;
+
+  for (auto& side : side_items) {
+    delete side;
+  }
+  side_items.clear();
+
   name = cap.name;
+  for (const auto& side : cap.side_items) {
+    side_items.push_back(side->clone());
+  }
 }
 
 std::string Cappuccino::get_name() const {

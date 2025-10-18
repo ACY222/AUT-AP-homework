@@ -15,10 +15,15 @@ public:
   double price() { return price_unit * units; }
   virtual ~Ingredient() = default;
 
+  virtual Ingredient* clone() const = 0;
+
 protected:
   // the following members are accessible for Ingredient and its subclass
   Ingredient(double price_unit, size_t units)
     : price_unit(price_unit), units(units) {}
+
+  Ingredient(const Ingredient& other)
+    : price_unit(other.price_unit), units(other.units), name(other.name) {}
 
   double price_unit;
   size_t units;

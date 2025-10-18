@@ -11,7 +11,8 @@
       this->name = #ingredient_name;                                        \
     }                                                                       \
     virtual std::string  get_name() const override { return this->name; }   \
-    virtual ~ingredient_name() override = default; \
+    virtual ~ingredient_name() override = default;                          \
+    virtual Ingredient* clone() const override { return new ingredient_name(*this); }\
   };
 
 DEFCLASS(Cinnamon, 5);
