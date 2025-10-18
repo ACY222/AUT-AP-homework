@@ -10,7 +10,7 @@ public:
   Mocha();
   Mocha(const Mocha& cap);
   virtual ~Mocha();
-  void operator=(const Mocha& cap);
+  Mocha& operator=(const Mocha& cap);
 
   virtual std::string get_name() const override;
   virtual double price() const override;

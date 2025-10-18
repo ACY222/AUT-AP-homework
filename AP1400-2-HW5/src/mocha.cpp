@@ -1,4 +1,5 @@
 #include "mocha.h"
+#include "espresso_based.h"
 #include "sub_ingredients.h"
 
 Mocha::Mocha() {
@@ -10,9 +11,9 @@ Mocha::Mocha() {
   ingredients.push_back(new Chocolate(1));
 }
 
-Mocha::Mocha(const Mocha& cap) {
-  name = cap.name;
-  for (const auto& side : side_items) {
+Mocha::Mocha(const Mocha& cap) : EspressoBased(cap) {
+  // name = cap.name;
+  for (const auto& side : cap.side_items) {
     side_items.push_back(side->clone());
   }
 }
@@ -21,14 +22,14 @@ Mocha::~Mocha() {
   for (auto& side : side_items) {
     delete side;
   }
-  side_items.clear();
 }
 
-void Mocha::operator=(const Mocha& cap) {
+Mocha& Mocha::operator=(const Mocha& cap) {
   if (this == &cap) {
-    return;
+    return *this;
   }
 
+  EspressoBased::operator=(cap);
   for (auto& side : side_items) {
     delete side;
   }
@@ -38,6 +39,7 @@ void Mocha::operator=(const Mocha& cap) {
   for (const auto& side : cap.side_items) {
     side_items.push_back(side->clone());
   }
+  return *this;
 }
 
 std::string Mocha::get_name() const {

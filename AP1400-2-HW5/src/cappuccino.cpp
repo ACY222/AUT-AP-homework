@@ -1,4 +1,5 @@
 #include "cappuccino.h"
+#include "espresso_based.h"
 #include "sub_ingredients.h"
 
 Cappuccino::Cappuccino() {
@@ -9,9 +10,9 @@ Cappuccino::Cappuccino() {
   ingredients.push_back(new MilkFoam(1));
 }
 
-Cappuccino::Cappuccino(const Cappuccino& cap) {
-  name = cap.name;
-  for (const auto& side : side_items) {
+Cappuccino::Cappuccino(const Cappuccino& cap) : EspressoBased(cap) {
+  // name = cap.name;
+  for (const auto& side : cap.side_items) {
     side_items.push_back(side->clone());
   }
 }
@@ -20,14 +21,14 @@ Cappuccino::~Cappuccino() {
   for (auto& side : side_items) {
     delete side;
   }
-  side_items.clear();
 }
 
-void Cappuccino::operator=(const Cappuccino& cap) {
+Cappuccino& Cappuccino::operator=(const Cappuccino& cap) {
   if (this == &cap) {
-    return;
+    return *this;
   }
 
+  EspressoBased::operator=(cap);
   for (auto& side : side_items) {
     delete side;
   }
@@ -37,6 +38,7 @@ void Cappuccino::operator=(const Cappuccino& cap) {
   for (const auto& side : cap.side_items) {
     side_items.push_back(side->clone());
   }
+  return *this;
 }
 
 std::string Cappuccino::get_name() const {
