@@ -1,18 +1,16 @@
 #include "cappuccino.h"
+#include "espresso_based.h"
 #include "sub_ingredients.h"
 
-Cappuccino::Cappuccino() : get_side_items(side_items) {
+Cappuccino::Cappuccino() {
   // add its default sub_ingredients
   ingredients.emplace_back(new Espresso(2));
   ingredients.emplace_back(new Milk(2));
   ingredients.emplace_back(new MilkFoam(1));
 }
 
-Cappuccino::Cappuccino(const Cappuccino& cap) :
-  side_items(cap.side_items),
-  get_side_items(side_items) {
-  ingredients = cap.ingredients;
-}
+Cappuccino::Cappuccino(const Cappuccino& cap)
+  : EspressoBased(cap), side_items(cap.side_items) {}
 
 Cappuccino::~Cappuccino() {
   for (const auto& i : side_items) {

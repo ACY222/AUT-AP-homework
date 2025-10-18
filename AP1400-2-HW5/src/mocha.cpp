@@ -1,7 +1,8 @@
 #include "mocha.h"
+#include "espresso_based.h"
 #include "sub_ingredients.h"
 
-Mocha::Mocha() : get_side_items(side_items) {
+Mocha::Mocha() {
   // add its default sub_ingredients
   ingredients.emplace_back(new Espresso(2));
   ingredients.emplace_back(new Milk(2));
@@ -9,11 +10,8 @@ Mocha::Mocha() : get_side_items(side_items) {
   ingredients.emplace_back(new Chocolate(1));
 }
 
-Mocha::Mocha(const Mocha& cap) :
-  side_items(cap.side_items),
-  get_side_items(side_items) {
-  ingredients = cap.ingredients;
-}
+Mocha::Mocha(const Mocha& cap)
+  : EspressoBased(cap), side_items(cap.side_items) {}
 
 Mocha::~Mocha() {
   for (const auto& i : side_items) {
