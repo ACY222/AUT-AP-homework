@@ -28,13 +28,13 @@ Cappuccino& Cappuccino::operator=(const Cappuccino& cap) {
     return *this;
   }
 
+  // handle with name, ingredients
   EspressoBased::operator=(cap);
   for (auto& side : side_items) {
     delete side;
   }
   side_items.clear();
 
-  name = cap.name;
   for (const auto& side : cap.side_items) {
     side_items.push_back(side->clone());
   }

@@ -35,7 +35,6 @@ Mocha& Mocha::operator=(const Mocha& cap) {
   }
   side_items.clear();
 
-  name = cap.name;
   for (const auto& side : cap.side_items) {
     side_items.push_back(side->clone());
   }
