@@ -54,3 +54,12 @@ too simple and the number of test cases is low. Therefore, even if there are
 many vulnerabilities or bugs in your code, you may still pass all the tests.
 But I have not figured out a good way to fix this.
 - After all, this homework is nice, highly recommended
+
+### homework 5
+
+- In this homework, we will make different kinds of espresso-based coffees using
+their ingredients to tackle `inheritance` and `polymorphism` in C++.
+- The quality of this homework is very high. For me, the two concepts are both
+new and unfamiliar. And I also learnt about `virtual` and some related keyword
+from it
+- Highly recommended
