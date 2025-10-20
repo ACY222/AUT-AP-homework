@@ -2,18 +2,17 @@
 #define MOCHA_H
 
 #include "espresso_based.h"
-#include "ingredient.h"
-#include <string>
 #include <vector>
+
 class Mocha : public EspressoBased {
 public:
   Mocha();
   Mocha(const Mocha& cap);
-  virtual ~Mocha();
+  ~Mocha() override;
   Mocha& operator=(const Mocha& cap);
 
-  virtual std::string get_name() const override;
-  virtual double price() const override;
+  std::string get_name() const override;
+  double price() const override;
 
   void add_side_item(Ingredient* side);
   std::vector<Ingredient*>& get_side_items();

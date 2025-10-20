@@ -2,6 +2,7 @@
 #define ESPRESSO_BASED_H
 
 #include <vector>
+#include <string>
 #include "ingredient.h"
 
 class EspressoBased {
@@ -9,15 +10,16 @@ public:
   virtual std::string get_name() const = 0;
   virtual double price() const = 0;
 
-  void brew();
+  void brew() const;
   std::vector<Ingredient*>& get_ingredients();
 
-  virtual ~EspressoBased();
+  virtual ~EspressoBased() = default;
 
 protected:
   EspressoBased();
+  EspressoBased(std::string name);
   EspressoBased(const EspressoBased& esp);
-  void operator=(const EspressoBased& esp);
+  EspressoBased& operator=(const EspressoBased& esp);
 
   std::vector<Ingredient*> ingredients;
   std::string name;

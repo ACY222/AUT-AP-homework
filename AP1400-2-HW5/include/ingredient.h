@@ -5,25 +5,20 @@
 
 class Ingredient {
 public:
-  // return the price per unit
   double get_price_unit() const { return price_unit; }
-  // show how many of this ingredient is needed
   size_t get_units() const { return units; }
-  // make get_name() a pure virtual function and so the class an abstract class
-  // the name of the ingredients, like Milk
-  virtual std::string get_name() const = 0;
-  double price() const { return price_unit * units; }
-  virtual ~Ingredient() = default;
+  // since the name of the ingredient is not known yet, make it a pure virtual
+  // function. Actually, I do not believe this is a reason
+  std::string get_name() const { return name; }
 
-  virtual Ingredient* clone() const = 0;
+  double price() const { return price_unit * units; }
+
+  virtual ~Ingredient() = default;
+  virtual Ingredient* clone() = 0;
 
 protected:
-  // the following members are accessible for Ingredient and its subclass
   Ingredient(double price_unit, size_t units)
     : price_unit(price_unit), units(units) {}
-
-  Ingredient(const Ingredient& other)
-    : price_unit(other.price_unit), units(other.units), name(other.name) {}
 
   double price_unit;
   size_t units;

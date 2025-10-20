@@ -1,26 +1,37 @@
 #include "cappuccino.h"
-#include "espresso_based.h"
 #include "sub_ingredients.h"
 
-Cappuccino::Cappuccino() {
-  name = "Cappuccino";
-  // add its default sub_ingredients
+namespace {
+  void delete_side_items(std::vector<Ingredient*>& side_items) {
+    for (auto& side_item : side_items) {
+      delete side_item;
+    }
+    side_items.clear();
+  }
+
+  void deep_copy(std::vector<Ingredient*>& side_items,
+                const std::vector<Ingredient*>& other) {
+    delete_side_items(side_items);
+    side_items.reserve(other.size());
+    for (const auto& side_item : other) {
+      side_items.push_back(side_item->clone());
+    }
+  }
+}
+
+Cappuccino::Cappuccino() : EspressoBased("Cappuccino") {
   ingredients.push_back(new Espresso(2));
   ingredients.push_back(new Milk(2));
   ingredients.push_back(new MilkFoam(1));
 }
 
 Cappuccino::Cappuccino(const Cappuccino& cap) : EspressoBased(cap) {
-  // name = cap.name;
-  for (const auto& side : cap.side_items) {
-    side_items.push_back(side->clone());
-  }
+  name = cap.name;
+  deep_copy(side_items, cap.side_items);
 }
 
 Cappuccino::~Cappuccino() {
-  for (auto& side : side_items) {
-    delete side;
-  }
+  delete_side_items(side_items);
 }
 
 Cappuccino& Cappuccino::operator=(const Cappuccino& cap) {
@@ -28,32 +39,25 @@ Cappuccino& Cappuccino::operator=(const Cappuccino& cap) {
     return *this;
   }
 
-  // handle with name, ingredients
-  EspressoBased::operator=(cap);
-  for (auto& side : side_items) {
-    delete side;
-  }
-  side_items.clear();
-
-  for (const auto& side : cap.side_items) {
-    side_items.push_back(side->clone());
-  }
+  name = cap.name;
+  deep_copy(side_items, cap.side_items);
   return *this;
 }
 
-std::string Cappuccino::get_name() const {
-  return name;
-}
+std::string Cappuccino::get_name() const { return name; }
 
+// ingredients' price + side_items' price
 double Cappuccino::price() const {
-  double price = 0;
-  for (const auto& ingredient_ptr : ingredients) {
-    price += ingredient_ptr->price();
+  double ing_price = 0, side_price = 0;
+
+  for (const auto& ing : ingredients) {
+    ing_price += ing->price();
   }
-  for (const auto& ingredient_ptr : side_items) {
-    price += ingredient_ptr->price();
+  for (const auto& side_item : side_items) {
+    side_price += side_item->price();
   }
-  return price;
+
+  return ing_price + side_price;
 }
 
 void Cappuccino::add_side_item(Ingredient* side) {

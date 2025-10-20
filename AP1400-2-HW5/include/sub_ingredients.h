@@ -3,16 +3,15 @@
 
 #include "ingredient.h"
 
-#define DEFCLASS(ingredient_name, price_unit)                               \
-  class ingredient_name : public Ingredient                                 \
-  {                                                                         \
-  public:                                                                   \
-    ingredient_name(size_t units) : Ingredient{(price_unit), units} {       \
-      this->name = #ingredient_name;                                        \
-    }                                                                       \
-    virtual std::string  get_name() const override { return this->name; }   \
-    virtual ~ingredient_name() override = default;                          \
-    virtual Ingredient* clone() const override { return new ingredient_name(*this); }\
+#define DEFCLASS(ing_name, price_unit)                        \
+  class ing_name : public Ingredient {                        \
+  public:                                                     \
+    ing_name(size_t units) : Ingredient{price_unit, units} {  \
+      this->name = #ing_name;                                 \
+    }                                                         \
+    virtual Ingredient* clone() override {                    \
+      return new ing_name(*this);                             \
+    }                                                         \
   };
 
 DEFCLASS(Cinnamon, 5);
