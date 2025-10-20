@@ -11,7 +11,6 @@ public:
   ~Cappuccino() override;
   Cappuccino& operator=(const Cappuccino& cap);
 
-  std::string get_name() const override;
   double price() const override;
 
   void add_side_item(Ingredient* side);

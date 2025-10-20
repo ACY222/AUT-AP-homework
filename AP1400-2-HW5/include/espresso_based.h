@@ -7,7 +7,7 @@
 
 class EspressoBased {
 public:
-  virtual std::string get_name() const = 0;
+  std::string get_name() const;
   virtual double price() const = 0;
 
   void brew() const;

@@ -45,8 +45,6 @@ Mocha& Mocha::operator=(const Mocha& cap) {
   return *this;
 }
 
-std::string Mocha::get_name() const { return name; }
-
 // ingredients' price + side_items' price
 double Mocha::price() const {
   double ing_price = 0, side_price = 0;

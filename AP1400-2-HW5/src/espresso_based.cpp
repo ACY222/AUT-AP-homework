@@ -18,6 +18,8 @@ namespace {
   }
 }
 
+std::string EspressoBased::get_name() const { return name; }
+
 void EspressoBased::brew() const {
   std::cout << "We are brewing " << get_name() << "\n";
   for (const auto& ing : ingredients) {

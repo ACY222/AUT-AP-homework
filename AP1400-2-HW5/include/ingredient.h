@@ -16,6 +16,8 @@ public:
   virtual ~Ingredient() = default;
   virtual Ingredient* clone() = 0;
 
+// use protected instead of private so that the subclass can use the
+  // constructor and access the member variables
 protected:
   Ingredient(double price_unit, size_t units)
     : price_unit(price_unit), units(units) {}
