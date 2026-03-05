@@ -32,8 +32,8 @@ struct Flight {
 
 inline int get_duration(string_view sv) {
     // 13h40m, 10h, 30m
-    int h_idx = sv.find('h');
-    int m_idx = sv.find('m');
+    size_t h_idx = sv.find('h');
+    size_t m_idx = sv.find('m');
     int h = 0, m = 0;
 
     if (h_idx != string_view::npos) {
@@ -49,7 +49,7 @@ inline int get_duration(string_view sv) {
 
 inline int get_connection_times(string_view str) {
     // 2h,1h30m,4h15m
-    int start = 0, end;
+    size_t start = 0, end;
     int times = 0;
 
     while ((end = str.find(',', start)) != string::npos) {
@@ -88,10 +88,6 @@ inline optional<Flight> process_line(const string &line) {
 
     return nullopt;
 }
-
-inline auto cmp = [](const Flight &f1, const Flight &f2) {
-    return f1.calculate_weight() > f2.calculate_weight();
-};
 
 inline priority_queue<Flight> gather_flights(string filename) {
     priority_queue<Flight> flights;
