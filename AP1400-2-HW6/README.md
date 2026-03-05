@@ -54,7 +54,7 @@ Finally, implement a function called `sort` and sort the patients by their possi
 
 **Note.** implement all your code in `q2` namespace and `q2.h` file.
 
-</br> 
+</br>
 
 # Question 3
 In this question, we want to store the flights in the `resources/flights.txt` file, in a `std::priority_queue` container.
@@ -95,13 +95,13 @@ So, implement the struct below to represent our position sensors. (you can add c
 struct Vector2D
 {
 double x{};
-double y{}; 
+double y{};
 };
 
 struct Sensor
 {
 	Vector2D pos;
-	double accuracy;    
+	double accuracy;
 };
 ```
 
@@ -124,20 +124,20 @@ this function calculates our final position measurement based on the kalman-filt
 As mentioned before, do not alter other files already populated except otherwise indicated. In case you want to test your code you may use the `debug` section of the `main.cpp`.
 
 ```cpp
-if (true) // make false to run unit tests  
-{ 
-	// debug section 
-}  
-else  
-{  
-	::testing::InitGoogleTest(&argc, argv);  
-	std::cout << "RUNNING TESTS ..." << std::endl;  
-	int ret{RUN_ALL_TESTS()};  
-	if (!ret)  
-		std::cout << "<<<SUCCESS>>>" << std::endl;  
-	else  
-	  std::cout << "FAILED" << std::endl;  
-}  
+if (true) // make false to run unit tests
+{
+	// debug section
+}
+else
+{
+	::testing::InitGoogleTest(&argc, argv);
+	std::cout << "RUNNING TESTS ..." << std::endl;
+	int ret{RUN_ALL_TESTS()};
+	if (!ret)
+		std::cout << "<<<SUCCESS>>>" << std::endl;
+	else
+	  std::cout << "FAILED" << std::endl;
+}
 return 0;
 ```
 <br/>
