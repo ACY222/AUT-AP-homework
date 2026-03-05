@@ -12,9 +12,9 @@ And my thoughts about there assignments are as follows:
 me. For example, what should I do if you call `mutiply(matrix1, matrix2)` and
 `matrix1.size() == 0`? Throw an error? Or `return {};`? Actually, the answer is
 `return matrix2;`. However, in another funciton, what you need to do might be
-completely different. Honestly, this is not obvious for me. So I must check the
+completely different. So I must check the
 `unit_test.cpp` to realize what should I do.
-- So, you may want to skip this homework
+- Therefore, you may want to skip this homework
 
 ### homework 2
 
@@ -31,7 +31,7 @@ Therefore, I tried it again after finishing it.
 ### homework 3
 
 - In this homework, we will implement a *binary search tree*
-- Same thing with homework, the description is vague, some are even wrong!
+- Same thing with homework 1, the description is vague, some are even wrong!
 And some function designs are odd to me. For example:
     ```cpp
     Node** find_node(int value);
@@ -50,7 +50,7 @@ deeply into the thoughts and realization of smart pointer, which is the new
 feature in C++11
 - But after finishing the first four assignments. I found a new problem: The
 `unit_test` is neither complete enough, nor strong enought: the test cases are
-too simple and the number of test cases is low. Therefore, even if there are
+too simple and the test cases are few. Therefore, even if there are
 many vulnerabilities or bugs in your code, you may still pass all the tests.
 But I have not figured out a good way to fix this.
 - After all, this homework is nice, highly recommended
